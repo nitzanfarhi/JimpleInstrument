@@ -82,12 +82,15 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 
 	private void InitMethod(Body body, SootMethod method) {
 		  Chain units = body.getUnits();
-		  Iterator stmtIt = units.snapshotIterator();
-		  //begining of the annotated method
-		  instrumentBegin(stmtIt,units,body);
+		  Iterator stmtIt;
 		  stmtIt = units.snapshotIterator();
 		  //all the commands of the method
 		  instrumentAnyCommand(units, stmtIt,body);
+
+		  stmtIt = units.snapshotIterator();
+		  //begining of the annotated method
+		  instrumentBegin(stmtIt,units,body);
+
 		  stmtIt = units.snapshotIterator();
 		  //the ending of the method
 		  instrumentMethodFinish(units, stmtIt,body);  
@@ -148,7 +151,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 	}
 
 
-	private void PrintParamValue(Chain units, Body body, Stmt incStmt)
+	private Stmt PrintParamValue(Chain units, Body body, Stmt incStmt)
 	{
 		StaticFieldRef jimple_name = Jimple.v().newStaticFieldRef(name.makeRef());
 		StaticFieldRef jimple_value = Jimple.v().newStaticFieldRef(value.makeRef());
@@ -189,6 +192,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			}
 			locnum++;
 		}
+		return incStmt;
 		
 
 	}
@@ -207,7 +211,8 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 					{	
 						Stmt AssignStmt;
 						AssignStmt = Jimple.v().newAssignStmt(jimple_value,loc);
-				       units.insertAfter(AssignStmt, incStmt);
+				        units.insertAfter(AssignStmt, incStmt);
+				       
 				        AssignStmt secondAssign = Jimple.v().newAssignStmt(
 				                jimple_name,
 				                StringConstant.v(loc.getName()));
@@ -219,17 +224,19 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 					}
 			else
 			{
-//				Stmt AssignStmt;
-//				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
-//		        units.insertAfter(AssignStmt, incStmt);
-//		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
-//		                jimple_name,
-//		                StringConstant.v(loc.getName()));
-//		        units.insertAfter(secondAssign, AssignStmt);
-//				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
-//				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
-//				units.insertAfter(printStmt, secondAssign);
-//				incStmt = printStmt;
+				Stmt AssignStmt;
+				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
+		        //units.insertAfter(AssignStmt, incStmt);
+		        
+		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
+		                jimple_name,
+		                StringConstant.v(loc.getName()));
+		        units.insertAfter(secondAssign, incStmt);
+		        
+				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
+				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+				units.insertAfter(printStmt, secondAssign);
+				incStmt = printStmt;
 			}
 			locnum++;
 		}
@@ -242,6 +249,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		Stmt stmt = (Stmt) stmtIt.next();
 		 stmt = (Stmt) stmtIt.next();
 
+		
 		String params ="(";
 		int paramIndex=0;
 		for(Type param : body.getMethod().getParameterTypes())
@@ -274,8 +282,38 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			units.insertAfter(incStmt, stmt);	
 			lstStmt = incStmt;
 		}
-		PrintParamValue(units, body, lstStmt);
+		lstStmt = initLocals(units,body,lstStmt);
 
+		Stmt aftStmt = PrintParamValue(units, body, lstStmt);
+
+	}
+
+	private Stmt initLocals(Chain units, Body body, Stmt aftStmt) {
+		Stmt lstStmt=aftStmt;
+		for(Local loc :body.getLocals())
+		{
+			if(!body.getParameterLocals().contains(loc)){
+				if(loc.getType().toString().equals("int"))
+				{	
+					System.out.println("FUCKiing"+loc);
+
+					Stmt AssignStmt = Jimple.v().newAssignStmt(loc,IntConstant.v(0));
+					units.insertAfter(AssignStmt, lstStmt);
+					lstStmt = AssignStmt;
+				}
+				else
+				{
+					System.out.println("FUCKobj"+loc);
+					Stmt AssignStmt = Jimple.v().newAssignStmt(loc,NullConstant.v());
+					units.insertAfter(AssignStmt, lstStmt);
+					lstStmt = AssignStmt;
+					
+				}
+				
+			}
+		}
+		return lstStmt;
+		
 	}
 
 	private void instrumentReturn(Iterator stmtIt, Chain units, Body body) {

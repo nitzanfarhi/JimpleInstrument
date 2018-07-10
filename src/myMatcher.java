@@ -1,30 +1,55 @@
 import bgu.cs.util.Matcher.Case;
 import bgu.cs.util.soot.*;
 import soot.Unit;
+import soot.Value;
+import soot.jimple.internal.JInstanceFieldRef;
 
 public class myMatcher {
 
 	public static String match(Case<Unit> matchedCase) {
 		if(matchedCase == null)
 			return "";
-		System.out.println(matchedCase.getClass().getSimpleName());
 		if(matchedCase instanceof CaseGotoStmt)
 			return "";
 		else if(matchedCase instanceof CaseIfEq)
 			return "";
-		if(matchedCase instanceof CaseAssignLocal_BinopExpr) {
+		
+		if(matchedCase instanceof CaseAssignLocal_Invoke) {
+			CaseAssignLocal_Invoke m = (CaseAssignLocal_Invoke) (matchedCase);
+			String right = m.methodName+"(";
+			for(int i=0;i<m.args.size();i++) {
+				right+=m.args.get(i);
+				if(i<m.args.size()-1)right+=", ";
+			}
+			right+=")";
+			String left = m.lhs.toString().replace("$", "");
+			return left+" = "+right;
+		}
+		if(matchedCase instanceof CaseAssignLocal_InstanceFieldRef) {
+			CaseAssignLocal_InstanceFieldRef m = (CaseAssignLocal_InstanceFieldRef) (matchedCase);
+			String right = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getFieldRef().name();
+			String left = m.lhs.toString().replace("$", "");
+			return left+" = "+right;
+		}
+		if(matchedCase instanceof CaseAssignInstanceFieldRef) {
+			CaseAssignInstanceFieldRef m = (CaseAssignInstanceFieldRef) (matchedCase);
+			String right = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getField().getName();
+//			String left = m.lhs.toString().replace("$", "");
+			return right+" = "+right;
+		}
+		System.out.println(matchedCase.getClass().getSimpleName());
+
+		if(matchedCase instanceof CaseAssignLocal) {
 			//WHY?
 			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
 			String right = m.rhs.toString().replace("$", "");
+			if(m.rhs instanceof JInstanceFieldRef)
+				right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue()+
+						((JInstanceFieldRef)m.rhs).getFieldRef().name();
 			String left = m.lhs.toString().replace("$", "");
 			return left+" = "+right;
 		}
-		if(matchedCase instanceof CaseAssignLocal_Invoke) {
-			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
-			String right = m.rhs.toString().replace("$", "");
-			String left = m.lhs.toString().replace("$", "");
-			return left+" = "+right;
-		}
+		
 //		else if(matchedCase instanceof CaseAssignLocal)
 //		{
 //			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);

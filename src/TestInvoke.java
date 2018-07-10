@@ -2,17 +2,18 @@ class TestInvoke {
   private static int calls=0;
   public static void main(String[] args) {
  
-    for (int i=1; i<12; i+=1) {
-      System.out.println(goo(i,3));
+    for (int i=1; i<2; i+=1) {
+//      System.out.println(goo(null,3));
+      System.out.println(goo2(i,3));
     } 
 //    goo(12,3);
   }
 
   private static int foo(int a) {
-	  return a;
+	  return a+1;
   }
   @checker
-  private static int goo(int a,int b){
+  private static int goo2(int a, int b) {
 	  int c =33;
 	  while (a != b) {
 		  a = foo(a);
@@ -25,7 +26,22 @@ class TestInvoke {
 		    }
 		  }
 	  return c;
-/*	  SLL n1 = new SLL();
+  }
+//  @checker
+  private static int goo(SLL sll, int x){
+//	  int c =33;
+//	  while (a != b) {
+//		  a = foo(a);
+//		    if (a > b) {
+//		      a = a - b;
+//		    }
+//		    else {
+//		    	c=c-a;
+//		      b = b - a;		      
+//		    }
+//		  }
+//	  return c;
+	  SLL n1 = new SLL();
 	  SLL n2 = new SLL();
 	  SLL n3 = new SLL();
 	  SLL n4 = new SLL();
@@ -51,15 +67,16 @@ class TestInvoke {
 	  }
 	  return -1;
   }
-*/
+
 	  //return 1;
-  }
+//  }
 }
 
 class SLL{
 int d=0;
 SLL l=null;
 SLL r=null;
+
 }
 /*
 class TestInvoke {
