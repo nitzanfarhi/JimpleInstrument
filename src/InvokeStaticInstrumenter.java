@@ -115,22 +115,23 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		    Stmt stmt = (Stmt)stmtIt.next();
 		    Case<Unit> matchedCase = utilMatch(stmt);
 		    String resulted = myMatcher.match(matchedCase);//romans pattern matching of commands
+		    
 		    if(resulted!="")
 		    {
 				if (matchedCase != null) {
-					System.out.println(String.format("%s -> %s", stmt, matchedCase.getClass().getSimpleName()));
+					System.out.println(String.format("%s -> %s", stmt, matchedCase.getClass()));
 				} else {
 					System.out.println(String.format("%s -> ? (unmatched)", stmt));
 					// throw new Error("Unable to match " + u);
 				}
-				
+
 				//print command to spec file
 				InvokeExpr incExpr= Jimple.v().newStaticInvokeExpr(printer.makeRef(),StringConstant.v(resulted+";//"));
 			    Stmt incStmt = Jimple.v().newInvokeStmt(incExpr);
 				
 			    units.insertAfter(incStmt, stmt);
 			    //print state -- this might be enabled only before and after method calls
-   		    
+			    PrintLocalValue(units,body,incStmt);
 		    }
 		  }
 	}
@@ -146,10 +147,52 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		}
 	}
 
-	 
-	
-	
+
 	private void PrintParamValue(Chain units, Body body, Stmt incStmt)
+	{
+		StaticFieldRef jimple_name = Jimple.v().newStaticFieldRef(name.makeRef());
+		StaticFieldRef jimple_value = Jimple.v().newStaticFieldRef(value.makeRef());
+		StaticFieldRef jimple_obj_value = Jimple.v().newStaticFieldRef(objvalue.makeRef());
+		int locnum=0;
+		
+		for(Local loc :body.getParameterLocals())
+		{
+			System.out.println(loc+" "+locnum);
+			int islast = locnum==body.getParameterLocals().size()-1?1:0;
+			if(loc.getType().toString().equals("int"))
+					{	
+						Stmt AssignStmt;
+						AssignStmt = Jimple.v().newAssignStmt(jimple_value,loc);
+				        units.insertAfter(AssignStmt, incStmt);
+				        AssignStmt secondAssign = Jimple.v().newAssignStmt(
+				                jimple_name,
+				                StringConstant.v(loc.getName()));
+				        units.insertAfter(secondAssign, AssignStmt);
+						InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_value.makeRef(),IntConstant.v(islast));
+						Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+						units.insertAfter(printStmt, secondAssign);
+						incStmt = printStmt;
+					}
+			else
+			{
+				Stmt AssignStmt;
+				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
+		        units.insertAfter(AssignStmt, incStmt);
+		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
+		                jimple_name,
+		                StringConstant.v(loc.getName()));
+		        units.insertAfter(secondAssign, AssignStmt);
+				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
+				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+				units.insertAfter(printStmt, secondAssign);
+				incStmt = printStmt;
+			}
+			locnum++;
+		}
+		
+
+	}
+	private void PrintLocalValue(Chain units, Body body, Stmt incStmt)
 	{
 		StaticFieldRef jimple_name = Jimple.v().newStaticFieldRef(name.makeRef());
 		StaticFieldRef jimple_value = Jimple.v().newStaticFieldRef(value.makeRef());
@@ -163,20 +206,8 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			if(loc.getType().toString().equals("int"))
 					{	
 						Stmt AssignStmt;
-						if(body.getParameterLocals().contains(loc))
-						{
-							AssignStmt = Jimple.v().newAssignStmt(
-								jimple_value,
-								loc);
-						}
-						else
-						{
-							AssignStmt = Jimple.v().newAssignStmt(
-									jimple_value,
-									IntConstant.v(0));
-						}
-				        units.insertAfter(AssignStmt, incStmt);
-
+						AssignStmt = Jimple.v().newAssignStmt(jimple_value,loc);
+				       units.insertAfter(AssignStmt, incStmt);
 				        AssignStmt secondAssign = Jimple.v().newAssignStmt(
 				                jimple_name,
 				                StringConstant.v(loc.getName()));
@@ -188,7 +219,17 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 					}
 			else
 			{
-				//unhandled object parameter;
+//				Stmt AssignStmt;
+//				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
+//		        units.insertAfter(AssignStmt, incStmt);
+//		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
+//		                jimple_name,
+//		                StringConstant.v(loc.getName()));
+//		        units.insertAfter(secondAssign, AssignStmt);
+//				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
+//				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+//				units.insertAfter(printStmt, secondAssign);
+//				incStmt = printStmt;
 			}
 			locnum++;
 		}
@@ -245,7 +286,6 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 				Object stmt = stmtIt.next();
 				if ((stmt instanceof ReturnStmt)
 			              ||(stmt instanceof ReturnVoidStmt)) {
-						System.out.println("THIS IS FUCKING INSUR");
 			            // 1. make invoke expression of MyCounter.report()
 			            InvokeExpr reportExpr= Jimple.v().newStaticInvokeExpr(finish.makeRef());
 		

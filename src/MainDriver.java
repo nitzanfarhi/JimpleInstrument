@@ -32,7 +32,8 @@ public class MainDriver {
         		
         }
         
-       String s = Scene.v().getSootClassPath() + File.pathSeparator + "C:\\Users\\admin\\eclipse-workspace\\JimpInstrument\\bin";      
+        //C:\\Users\\nitzanfa\\ROMAN\\Jimple\\
+       String s = Scene.v().getSootClassPath() + File.pathSeparator + "bin";     
        Scene.v().setSootClassPath(s);
 
        Pack jtp = PackManager.v().getPack("jtp");
@@ -40,8 +41,12 @@ public class MainDriver {
                              new InvokeStaticInstrumenter()));
 
        String[] args2 = new String[2];
+
+//       String[] args2 = new String[4];
        args2[0]=args[0];
        args2[1]="MyCounter";
+      // args2[2]="-f";
+      // args2[3]="jimple";
        soot.Main.main(args2);
     }
 }

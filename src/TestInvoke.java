@@ -5,24 +5,26 @@ class TestInvoke {
     for (int i=1; i<12; i+=1) {
       System.out.println(goo(i,3));
     } 
+//    goo(12,3);
   }
 
+  private static int foo(int a) {
+	  return a;
+  }
   @checker
   private static int goo(int a,int b){
-	  if(a==7)
-	  {
-		  return b;
-	  }
-	  
+	  int c =33;
 	  while (a != b) {
+		  a = foo(a);
 		    if (a > b) {
 		      a = a - b;
 		    }
 		    else {
-		      b = b - a;
+		    	c=c-a;
+		      b = b - a;		      
 		    }
 		  }
-	  return b;
+	  return c;
 /*	  SLL n1 = new SLL();
 	  SLL n2 = new SLL();
 	  SLL n3 = new SLL();
