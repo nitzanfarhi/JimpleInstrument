@@ -1,10 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,10 +12,12 @@ public class MyCounter {
   public static Object objvalue=null;
   public static int SHOW_DELTA=0; 
   public static int DELTA_CHANGED=0; 
-  public static HashMap<String,String> map;
-  public static void addVar(String name,String value)
+  public static HashMap<Object,Object> map;
+  public static void addVar(Object pointer,Object name)
   {
-	  map.put(name,value);
+	  if(map==null)
+		  map = new HashMap<>();
+	  map.put(pointer,name);
   }
   public static void toggleDelta()
   {
@@ -59,23 +58,39 @@ public class MyCounter {
   static ArrayList<String> curr=null;
   public static void printObjValue(int end)
   {
-	  if(objvalue==null) objvalue=1;
-	  String s;
-	  if(end==0) {
-	   s = String.format("%s==%s && ",name,objvalue.toString());
+	  String s="";
+	  if(objvalue==null){
+		  s = String.format("%s==%s", name, "null");
+		  if(end==0)
+			  s += " && ";
+		  else
+			  s += "]";
 	  }
-	  else
-	  {
-		   s = String.format("%s==%s]",name,objvalue.toString());		  
+	  else {
+		  Field[] fields = objvalue.getClass().getDeclaredFields();
+//		  s+=map;
+		  for(Field f:fields) {
+			  try {
+				  if(f.get(objvalue) instanceof Integer)
+					  s+=String.format("%s.%s==%s", name,  f.getName(), f.get(objvalue));
+				  else
+					  s+=String.format("%s.%s==%s", name,  f.getName(), map.get(f.get(objvalue)));
+					  
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				s+=String.format("%s.%s==%s", name, f.getName(), "null");
+			}
+			  if(end==0)
+				  s += " && ";
+			  else
+				  s += "]";			  
+		  }
 	  }
-	  if(last==null)
-	  {
+	  		  
+	  if(last==null){
 		  curr.add(s);
 		  writer.print(s);
-
 	  }
-	  else
-	  {
+	  else{
 		  if(!last.contains(s)||SHOW_DELTA==0) {
 			  curr.add(s);
 			  writer.print(s);

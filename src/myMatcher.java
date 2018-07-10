@@ -9,10 +9,10 @@ public class myMatcher {
 	public static String match(Case<Unit> matchedCase) {
 		if(matchedCase == null)
 			return "";
-		if(matchedCase instanceof CaseGotoStmt)
-			return "";
-		else if(matchedCase instanceof CaseIfEq)
-			return "";
+//		if(matchedCase instanceof CaseGotoStmt)
+//			return "";
+//		else if(matchedCase instanceof CaseIfEq)
+//			return "";
 		
 		if(matchedCase instanceof CaseAssignLocal_Invoke) {
 			CaseAssignLocal_Invoke m = (CaseAssignLocal_Invoke) (matchedCase);
@@ -37,7 +37,7 @@ public class myMatcher {
 //			String left = m.lhs.toString().replace("$", "");
 			return right+" = "+right;
 		}
-		System.out.println(matchedCase.getClass().getSimpleName());
+		
 
 		if(matchedCase instanceof CaseAssignLocal) {
 			//WHY?
@@ -66,8 +66,8 @@ public class myMatcher {
 //		//	return left+" = "+right;
 //		}
 		
-
-		else if(matchedCase instanceof CaseReturnStmt)
+		System.out.println("**** "+ matchedCase.getClass().getSimpleName());
+		if(matchedCase instanceof CaseReturnStmt)
 		{
 			return matchedCase.toString();			
 		}

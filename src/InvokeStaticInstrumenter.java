@@ -6,6 +6,7 @@ import java.util.Map;
 import bgu.cs.util.Matcher;
 import bgu.cs.util.Matcher.Case;
 import bgu.cs.util.soot.CaseAssignLocal;
+import polyglot.types.reflect.Constant;
 import soot.*;
 import soot.jimple.AssignStmt;
 import soot.jimple.CastExpr;
@@ -31,7 +32,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 
     /* some internal fields */
     static SootClass counterClass;
-    static SootMethod init,finish,printer,method_finish,print_value,print_obj_value,toggle;
+    static SootMethod init,finish,printer,method_finish,print_value,print_obj_value,toggle,addObjectToMap;
     static SootField name,value,objvalue;
 	static Matcher<Unit> jimpleMatcher = new Matcher<>();
 
@@ -46,6 +47,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
       print_value = counterClass.getMethod("void printValue(int)");
       print_obj_value = counterClass.getMethod("void printObjValue(int)");
       toggle = counterClass.getMethod("void toggleDelta()");
+      addObjectToMap = counterClass.getMethod("void addVar(java.lang.Object,java.lang.Object)");
       
       //fields
       name = counterClass.getFieldByName("name");
@@ -110,12 +112,13 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		}
 	}
 
-	private void instrumentAnyCommand(Chain units, Iterator stmtIt, Body body) {
-
-		stmtIt.next();stmtIt.next();
+	private void instrumentAnyCommand(Chain units, Iterator stmtIt, Body body) {		
+		for(int i=0;i<body.getParameterLocals().size();i++)
+			stmtIt.next();
 		while (stmtIt.hasNext()) {
 
 		    Stmt stmt = (Stmt)stmtIt.next();
+		    System.out.println(stmt+"&&&");
 		    Case<Unit> matchedCase = utilMatch(stmt);
 		    String resulted = myMatcher.match(matchedCase);//romans pattern matching of commands
 		    
@@ -160,7 +163,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		
 		for(Local loc :body.getParameterLocals())
 		{
-			System.out.println(loc+" "+locnum);
+
 			int islast = locnum==body.getParameterLocals().size()-1?1:0;
 			if(loc.getType().toString().equals("int"))
 					{	
@@ -181,10 +184,12 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 				Stmt AssignStmt;
 				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
 		        units.insertAfter(AssignStmt, incStmt);
+		        
 		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
 		                jimple_name,
 		                StringConstant.v(loc.getName()));
 		        units.insertAfter(secondAssign, AssignStmt);
+		        
 				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
 				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
 				units.insertAfter(printStmt, secondAssign);
@@ -205,7 +210,6 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		
 		for(Local loc :body.getLocals())
 		{
-			System.out.println(loc+" "+locnum);
 			int islast = locnum==body.getLocals().size()-1?1:0;
 			if(loc.getType().toString().equals("int"))
 					{	
@@ -226,12 +230,12 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			{
 				Stmt AssignStmt;
 				AssignStmt = Jimple.v().newAssignStmt(jimple_obj_value,loc);
-		        //units.insertAfter(AssignStmt, incStmt);
+		        units.insertAfter(AssignStmt, incStmt);
 		        
 		        AssignStmt secondAssign = Jimple.v().newAssignStmt(
 		                jimple_name,
 		                StringConstant.v(loc.getName()));
-		        units.insertAfter(secondAssign, incStmt);
+		        units.insertAfter(secondAssign, AssignStmt);
 		        
 				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
 				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
@@ -246,8 +250,10 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 	
 	private void instrumentBegin(Iterator stmtIt, Chain units, Body body) {
 		// method prefix printing
-		Stmt stmt = (Stmt) stmtIt.next();
-		 stmt = (Stmt) stmtIt.next();
+		Stmt stmt=(Stmt)stmtIt.next();
+		
+		for(int i=0;i<body.getParameterLocals().size()-1;i++)
+			stmt = (Stmt) stmtIt.next();
 
 		
 		String params ="(";
@@ -295,7 +301,6 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			if(!body.getParameterLocals().contains(loc)){
 				if(loc.getType().toString().equals("int"))
 				{	
-					System.out.println("FUCKiing"+loc);
 
 					Stmt AssignStmt = Jimple.v().newAssignStmt(loc,IntConstant.v(0));
 					units.insertAfter(AssignStmt, lstStmt);
@@ -303,13 +308,20 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 				}
 				else
 				{
-					System.out.println("FUCKobj"+loc);
 					Stmt AssignStmt = Jimple.v().newAssignStmt(loc,NullConstant.v());
 					units.insertAfter(AssignStmt, lstStmt);
-					lstStmt = AssignStmt;
-					
+					lstStmt = AssignStmt;					
 				}
 				
+			}
+			else {
+				if(!loc.getType().toString().equals("int")) {
+			        
+					InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(addObjectToMap.makeRef(),loc,StringConstant.v(loc.getName()));
+					Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+					units.insertAfter(printStmt, lstStmt);
+					lstStmt = printStmt;
+				}
 			}
 		}
 		return lstStmt;

@@ -1,0 +1,547 @@
+public class MyCounter extends java.lang.Object
+{
+    private static java.io.PrintWriter writer;
+    public static java.lang.String name;
+    public static int value;
+    public static java.lang.Object objvalue;
+    public static int SHOW_DELTA;
+    public static int DELTA_CHANGED;
+    public static java.util.HashMap map;
+    static java.util.ArrayList last;
+    static java.util.ArrayList curr;
+
+    static void <clinit>()
+    {
+        <MyCounter: java.io.PrintWriter writer> = null;
+
+        <MyCounter: java.lang.String name> = "x";
+
+        <MyCounter: int value> = 5;
+
+        <MyCounter: java.lang.Object objvalue> = null;
+
+        <MyCounter: int SHOW_DELTA> = 0;
+
+        <MyCounter: int DELTA_CHANGED> = 0;
+
+        <MyCounter: java.util.ArrayList last> = null;
+
+        <MyCounter: java.util.ArrayList curr> = null;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        MyCounter r0;
+
+        r0 := @this: MyCounter;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void addVar(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1;
+        java.util.HashMap $r2;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.String;
+
+        $r2 = <MyCounter: java.util.HashMap map>;
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(r0, r1);
+
+        return;
+    }
+
+    public static void toggleDelta()
+    {
+        int $i0, $i1;
+        byte $b2;
+
+        $i0 = <MyCounter: int DELTA_CHANGED>;
+
+        if $i0 != 0 goto label3;
+
+        $i1 = <MyCounter: int SHOW_DELTA>;
+
+        if $i1 != 1 goto label1;
+
+        $b2 = 0;
+
+        goto label2;
+
+     label1:
+        $b2 = 1;
+
+     label2:
+        <MyCounter: int SHOW_DELTA> = $b2;
+
+        <MyCounter: int DELTA_CHANGED> = 1;
+
+     label3:
+        return;
+    }
+
+    public static void init(java.lang.String)
+    {
+        java.lang.String r0, $r12;
+        java.io.PrintWriter $r2, $r3, $r6, $r8, $r9;
+        java.util.ArrayList $r4, $r5;
+        java.io.FileWriter $r7;
+        java.io.IOException $r10;
+        java.io.PrintStream $r11;
+
+        r0 := @parameter0: java.lang.String;
+
+     label1:
+        $r2 = <MyCounter: java.io.PrintWriter writer>;
+
+        if $r2 != null goto label2;
+
+        $r5 = new java.util.ArrayList;
+
+        specialinvoke $r5.<java.util.ArrayList: void <init>()>();
+
+        <MyCounter: java.util.ArrayList curr> = $r5;
+
+        $r6 = new java.io.PrintWriter;
+
+        $r7 = new java.io.FileWriter;
+
+        specialinvoke $r7.<java.io.FileWriter: void <init>(java.lang.String)>("output.spec");
+
+        specialinvoke $r6.<java.io.PrintWriter: void <init>(java.io.Writer)>($r7);
+
+        <MyCounter: java.io.PrintWriter writer> = $r6;
+
+        $r8 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r8.<java.io.PrintWriter: void println(java.lang.String)>(r0);
+
+        $r9 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r9.<java.io.PrintWriter: void flush()>();
+
+     label2:
+        $r3 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r3.<java.io.PrintWriter: void print(java.lang.String)>("\texample {[");
+
+     label3:
+        goto label5;
+
+     label4:
+        $r10 := @caughtexception;
+
+        $r11 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = virtualinvoke $r10.<java.io.IOException: java.lang.String getMessage()>();
+
+        virtualinvoke $r11.<java.io.PrintStream: void println(java.lang.String)>($r12);
+
+     label5:
+        <MyCounter: java.lang.String name> = "ERROR";
+
+        <MyCounter: int value> = -1;
+
+        $r4 = new java.util.ArrayList;
+
+        specialinvoke $r4.<java.util.ArrayList: void <init>()>();
+
+        <MyCounter: java.util.ArrayList curr> = $r4;
+
+        return;
+
+        catch java.io.IOException from label1 to label3 with label4;
+    }
+
+    public static void method_finish()
+    {
+        java.io.PrintWriter $r0, $r2, $r3;
+        java.io.PrintStream $r1;
+
+        $r0 = <MyCounter: java.io.PrintWriter writer>;
+
+        if $r0 == null goto label1;
+
+        $r2 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r2.<java.io.PrintWriter: void println(java.lang.String)>("\n\t}");
+
+        $r3 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r3.<java.io.PrintWriter: void flush()>();
+
+        goto label2;
+
+     label1:
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("Error");
+
+     label2:
+        return;
+    }
+
+    public static void printObjValue(int)
+    {
+        int i0, i1, $i2, i3;
+        java.lang.reflect.Field[] r0;
+        java.lang.reflect.Field r1;
+        java.lang.Object $r4, $r5, $r12, $r13;
+        java.lang.Class $r6;
+        java.lang.StringBuilder $r7, $r15, $r16, $r18, $r19, $r21, $r29, $r31, $r32, $r34, $r36, $r42;
+        java.lang.String $r8, $r10, $r11, $r14, $r17, $r20, $r28, $r30, $r33, $r37, $r39, $r40, $r41, r43, r44, r45;
+        java.lang.Object[] $r9, $r27, $r38;
+        java.util.ArrayList $r22, $r23, $r25, $r46;
+        boolean $z0;
+        java.io.PrintWriter $r24, $r26;
+        java.lang.Exception $r35;
+
+        i0 := @parameter0: int;
+
+        r43 = "";
+
+        $r4 = <MyCounter: java.lang.Object objvalue>;
+
+        if $r4 != null goto label02;
+
+        $r27 = newarray (java.lang.Object)[2];
+
+        $r28 = <MyCounter: java.lang.String name>;
+
+        $r27[0] = $r28;
+
+        $r27[1] = "null";
+
+        r44 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s==%s", $r27);
+
+        if i0 != 0 goto label01;
+
+        $r32 = new java.lang.StringBuilder;
+
+        $r33 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r44);
+
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>($r33);
+
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" && ");
+
+        r43 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label11;
+
+     label01:
+        $r29 = new java.lang.StringBuilder;
+
+        $r30 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r44);
+
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>($r30);
+
+        $r31 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        r43 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label11;
+
+     label02:
+        $r5 = <MyCounter: java.lang.Object objvalue>;
+
+        $r6 = virtualinvoke $r5.<java.lang.Object: java.lang.Class getClass()>();
+
+        r0 = virtualinvoke $r6.<java.lang.Class: java.lang.reflect.Field[] getDeclaredFields()>();
+
+        i1 = lengthof r0;
+
+        i3 = 0;
+
+        goto label10;
+
+     label03:
+        r1 = r0[i3];
+
+     label04:
+        $r7 = new java.lang.StringBuilder;
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r43);
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = newarray (java.lang.Object)[3];
+
+        $r10 = <MyCounter: java.lang.String name>;
+
+        $r9[0] = $r10;
+
+        $r11 = virtualinvoke r1.<java.lang.reflect.Field: java.lang.String getName()>();
+
+        $r9[1] = $r11;
+
+        $r12 = <MyCounter: java.lang.Object objvalue>;
+
+        $r13 = virtualinvoke r1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($r12);
+
+        $r9[2] = $r13;
+
+        $r14 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s.%s==%s", $r9);
+
+        $r15 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r14);
+
+        r45 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label05:
+        goto label07;
+
+     label06:
+        $r35 := @caughtexception;
+
+        $r36 = new java.lang.StringBuilder;
+
+        $r37 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r43);
+
+        specialinvoke $r36.<java.lang.StringBuilder: void <init>(java.lang.String)>($r37);
+
+        $r38 = newarray (java.lang.Object)[3];
+
+        $r39 = <MyCounter: java.lang.String name>;
+
+        $r38[0] = $r39;
+
+        $r40 = virtualinvoke r1.<java.lang.reflect.Field: java.lang.String getName()>();
+
+        $r38[1] = $r40;
+
+        $r38[2] = "null";
+
+        $r41 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s.%s==%s", $r38);
+
+        $r42 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41);
+
+        r45 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label07:
+        if i0 != 0 goto label08;
+
+        $r19 = new java.lang.StringBuilder;
+
+        $r20 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r45);
+
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>($r20);
+
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" && ");
+
+        r43 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label09;
+
+     label08:
+        $r16 = new java.lang.StringBuilder;
+
+        $r17 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r45);
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>($r17);
+
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        r43 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label09:
+        i3 = i3 + 1;
+
+     label10:
+        if i3 < i1 goto label03;
+
+     label11:
+        $r46 = <MyCounter: java.util.ArrayList last>;
+
+        if $r46 != null goto label12;
+
+        $r25 = <MyCounter: java.util.ArrayList curr>;
+
+        virtualinvoke $r25.<java.util.ArrayList: boolean add(java.lang.Object)>(r43);
+
+        $r26 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r26.<java.io.PrintWriter: void print(java.lang.String)>(r43);
+
+        goto label14;
+
+     label12:
+        $r22 = <MyCounter: java.util.ArrayList last>;
+
+        $z0 = virtualinvoke $r22.<java.util.ArrayList: boolean contains(java.lang.Object)>(r43);
+
+        if $z0 == 0 goto label13;
+
+        $i2 = <MyCounter: int SHOW_DELTA>;
+
+        if $i2 != 0 goto label14;
+
+     label13:
+        $r23 = <MyCounter: java.util.ArrayList curr>;
+
+        virtualinvoke $r23.<java.util.ArrayList: boolean add(java.lang.Object)>(r43);
+
+        $r24 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r24.<java.io.PrintWriter: void print(java.lang.String)>(r43);
+
+     label14:
+        return;
+
+        catch java.lang.IllegalArgumentException from label04 to label05 with label06;
+        catch java.lang.IllegalAccessException from label04 to label05 with label06;
+    }
+
+    public static void printValue(int)
+    {
+        int i0, $i1, $i2, $i3;
+        java.lang.Object[] $r0, $r9;
+        java.lang.String $r1, $r10, r12;
+        java.lang.Integer $r2, $r11;
+        java.util.ArrayList $r3, $r4, $r5, $r7;
+        boolean $z0;
+        java.io.PrintWriter $r6, $r8;
+
+        i0 := @parameter0: int;
+
+        <MyCounter: int SHOW_DELTA> = 0;
+
+        if i0 != 0 goto label1;
+
+        $r9 = newarray (java.lang.Object)[2];
+
+        $r10 = <MyCounter: java.lang.String name>;
+
+        $r9[0] = $r10;
+
+        $i3 = <MyCounter: int value>;
+
+        $r11 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i3);
+
+        $r9[1] = $r11;
+
+        r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s==%s && ", $r9);
+
+        goto label2;
+
+     label1:
+        $r0 = newarray (java.lang.Object)[2];
+
+        $r1 = <MyCounter: java.lang.String name>;
+
+        $r0[0] = $r1;
+
+        $i1 = <MyCounter: int value>;
+
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+
+        $r0[1] = $r2;
+
+        r12 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s==%s]", $r0);
+
+     label2:
+        $r3 = <MyCounter: java.util.ArrayList last>;
+
+        if $r3 != null goto label3;
+
+        $r7 = <MyCounter: java.util.ArrayList curr>;
+
+        virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>(r12);
+
+        $r8 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r8.<java.io.PrintWriter: void print(java.lang.String)>(r12);
+
+        goto label5;
+
+     label3:
+        $r4 = <MyCounter: java.util.ArrayList last>;
+
+        $z0 = virtualinvoke $r4.<java.util.ArrayList: boolean contains(java.lang.Object)>(r12);
+
+        if $z0 == 0 goto label4;
+
+        $i2 = <MyCounter: int SHOW_DELTA>;
+
+        if $i2 != 0 goto label5;
+
+     label4:
+        $r5 = <MyCounter: java.util.ArrayList curr>;
+
+        virtualinvoke $r5.<java.util.ArrayList: boolean add(java.lang.Object)>(r12);
+
+        $r6 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r6.<java.io.PrintWriter: void print(java.lang.String)>(r12);
+
+     label5:
+        return;
+    }
+
+    public static void finish()
+    {
+        java.io.PrintWriter $r0, $r1, $r2, $r3;
+
+        $r0 = <MyCounter: java.io.PrintWriter writer>;
+
+        if $r0 == null goto label1;
+
+        $r1 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r1.<java.io.PrintWriter: void println(java.lang.String)>("\n}");
+
+        $r2 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r2.<java.io.PrintWriter: void flush()>();
+
+        $r3 = <MyCounter: java.io.PrintWriter writer>;
+
+        virtualinvoke $r3.<java.io.PrintWriter: void close()>();
+
+     label1:
+        return;
+    }
+
+    public static void printer(java.lang.String)
+    {
+        java.lang.String r0, $r6;
+        java.io.PrintWriter $r1, $r4;
+        java.util.ArrayList $r2;
+        java.lang.StringBuilder $r3, $r5;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r1 = <MyCounter: java.io.PrintWriter writer>;
+
+        if $r1 == null goto label1;
+
+        $r2 = <MyCounter: java.util.ArrayList curr>;
+
+        <MyCounter: java.util.ArrayList last> = $r2;
+
+        $r4 = <MyCounter: java.io.PrintWriter writer>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("\n\t-> ");
+
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r4.<java.io.PrintWriter: void print(java.lang.String)>($r6);
+
+     label1:
+        return;
+    }
+
+    public static int return1()
+    {
+        return 1;
+    }
+}

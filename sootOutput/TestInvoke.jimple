@@ -1,0 +1,1191 @@
+class TestInvoke extends java.lang.Object
+{
+    private static int calls;
+
+    static void <clinit>()
+    {
+        <TestInvoke: int calls> = 0;
+
+        return;
+    }
+
+    void <init>()
+    {
+        TestInvoke r0;
+
+        r0 := @this: TestInvoke;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        SLL $r1, $r3, $r4, $r5, $r6;
+        java.io.PrintStream $r2;
+        int $i0, i1;
+
+        r0 := @parameter0: java.lang.String[];
+
+        i1 = 1;
+
+        goto label2;
+
+     label1:
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+
+        $r1 = new SLL;
+
+        specialinvoke $r1.<SLL: void <init>(int)>(1);
+
+        $r3 = new SLL;
+
+        specialinvoke $r3.<SLL: void <init>(int)>(2);
+
+        $r4 = new SLL;
+
+        specialinvoke $r4.<SLL: void <init>(int)>(3);
+
+        $r5 = new SLL;
+
+        specialinvoke $r5.<SLL: void <init>(int)>(4);
+
+        $r6 = new SLL;
+
+        specialinvoke $r6.<SLL: void <init>(int)>(5);
+
+        $i0 = staticinvoke <TestInvoke: int goo(SLL,SLL,SLL,SLL,SLL,int)>($r1, $r3, $r4, $r5, $r6, 3);
+
+        virtualinvoke $r2.<java.io.PrintStream: void println(int)>($i0);
+
+        i1 = i1 + 1;
+
+     label2:
+        if i1 < 2 goto label1;
+
+        staticinvoke <MyCounter: void finish()>();
+
+        return;
+    }
+
+    private static int foo(int)
+    {
+        int i0;
+
+        i0 := @parameter0: int;
+
+        return i0;
+    }
+
+    private static int goo2(int, int)
+    {
+        int i0, i1, i2;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 = 33;
+
+        goto label3;
+
+     label1:
+        i0 = staticinvoke <TestInvoke: int foo(int)>(i0);
+
+        if i0 <= i1 goto label2;
+
+        i0 = i0 - i1;
+
+        goto label3;
+
+     label2:
+        i2 = i2 - i0;
+
+        i1 = i1 - i0;
+
+     label3:
+        if i0 != i1 goto label1;
+
+        return i2;
+    }
+
+    private static int goo(SLL, SLL, SLL, SLL, SLL, int)
+    {
+        SLL r0, r1, r2, r3, r4, r5;
+        int $i0, $i1, $i2, $i3, i4;
+
+        r0 := @parameter0: SLL;
+
+        r1 := @parameter1: SLL;
+
+        r2 := @parameter2: SLL;
+
+        r3 := @parameter3: SLL;
+
+        r4 := @parameter4: SLL;
+
+        i4 := @parameter5: int;
+
+        staticinvoke <MyCounter: void toggleDelta()>();
+
+        staticinvoke <MyCounter: void init(java.lang.String)>("goo (mut i0:SLL,mut i1:SLL,mut i2:SLL,mut i3:SLL,mut i4:SLL,mut i5:int) -> (res:int){");
+
+        $i0 = 0;
+
+        $i1 = 0;
+
+        $i2 = 0;
+
+        $i3 = 0;
+
+        r5 = null;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(1);
+
+        r1.<SLL: int d> = 13;
+
+        r2.<SLL: int d> = 12;
+
+        r3.<SLL: int d> = 11;
+
+        r4.<SLL: int d> = 10;
+
+        r1.<SLL: SLL l> = r2;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r1.l = r1.l;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        r2.<SLL: SLL l> = r3;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r2.l = r2.l;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        r3.<SLL: SLL l> = r4;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r3.l = r3.l;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        r5 = r1;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r5 = r1;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        goto label4;
+
+     label1:
+        $i0 = r5.<SLL: int d>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i0 = r5d;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        if $i0 <= i4 goto label2;
+
+        r5 = r5.<SLL: SLL l>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r5 = r5.l;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        i4 = i4 + -1;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i4 = i4 + -1;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        goto label4;
+
+     label2:
+        $i1 = r5.<SLL: int d>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i1 = r5d;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        if $i1 >= i4 goto label3;
+
+        r5 = r5.<SLL: SLL r>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("r5 = r5.r;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        i4 = i4 + -2;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i4 = i4 + -2;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        goto label4;
+
+     label3:
+        $i2 = r5.<SLL: int d>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i2 = r5d;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        if $i2 != i4 goto label4;
+
+        $i3 = r5.<SLL: int d>;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("i3 = r5d;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+        staticinvoke <MyCounter: void method_finish()>();
+
+        return $i3;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("bgu.cs.util.soot.CaseReturnStmt@246ae900;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+
+     label4:
+        if r5 != null goto label1;
+
+        staticinvoke <MyCounter: void method_finish()>();
+
+        return -1;
+
+        staticinvoke <MyCounter: void printer(java.lang.String)>("bgu.cs.util.soot.CaseReturnStmt@246ae900;//");
+
+        <MyCounter: java.lang.String name> = "r0";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r1";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r2";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r3";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r4";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(0);
+
+        <MyCounter: int value> = $i0;
+
+        <MyCounter: java.lang.String name> = "$i0";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i1;
+
+        <MyCounter: java.lang.String name> = "$i1";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i2;
+
+        <MyCounter: java.lang.String name> = "$i2";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = $i3;
+
+        <MyCounter: java.lang.String name> = "$i3";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: int value> = i4;
+
+        <MyCounter: java.lang.String name> = "i4";
+
+        staticinvoke <MyCounter: void printValue(int)>(0);
+
+        <MyCounter: java.lang.String name> = "r5";
+
+        staticinvoke <MyCounter: void printObjValue(int)>(1);
+
+        <MyCounter: java.lang.Object objvalue> = r5;
+
+        <MyCounter: java.lang.Object objvalue> = r4;
+
+        <MyCounter: java.lang.Object objvalue> = r3;
+
+        <MyCounter: java.lang.Object objvalue> = r2;
+
+        <MyCounter: java.lang.Object objvalue> = r1;
+
+        <MyCounter: java.lang.Object objvalue> = r0;
+    }
+}

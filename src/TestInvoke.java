@@ -3,16 +3,16 @@ class TestInvoke {
   public static void main(String[] args) {
  
     for (int i=1; i<2; i+=1) {
-//      System.out.println(goo(null,3));
-      System.out.println(goo2(i,3));
+      System.out.println(goo(new SLL(1),new SLL(2),new SLL(3),new SLL(4),new SLL(5),3));
+//      System.out.println(goo2(i,3));
     } 
 //    goo(12,3);
   }
 
   private static int foo(int a) {
-	  return a+1;
+	  return a;
   }
-  @checker
+//  @checker
   private static int goo2(int a, int b) {
 	  int c =33;
 	  while (a != b) {
@@ -27,8 +27,8 @@ class TestInvoke {
 		  }
 	  return c;
   }
-//  @checker
-  private static int goo(SLL sll, int x){
+  @checker
+  private static int goo(SLL sll,SLL n1, SLL n2, SLL n3, SLL n4, int x){
 //	  int c =33;
 //	  while (a != b) {
 //		  a = foo(a);
@@ -41,11 +41,11 @@ class TestInvoke {
 //		    }
 //		  }
 //	  return c;
-	  SLL n1 = new SLL();
-	  SLL n2 = new SLL();
-	  SLL n3 = new SLL();
-	  SLL n4 = new SLL();
-
+//	  SLL n1 = new SLL();
+//	  SLL n2 = new SLL();
+//	  SLL n3 = new SLL();
+//	  SLL n4 = new SLL();
+	  
 	  n1.d=13;
 	  n2.d=12;
 	  n3.d=11;
@@ -58,12 +58,18 @@ class TestInvoke {
 	  SLL tmp=n1;
 	  while(tmp!=null)
 	  {
-		  if(tmp.d>x)
+		  if(tmp.d>x) {
 			  tmp=tmp.l;
-		  else if(tmp.d<x)
+			  x=x-1;
+		  }
+		  else if(tmp.d<x) {
 			  tmp=tmp.r;
-		  else if(tmp.d==x)
+			  x=x-2;
+		  }
+		  else if(tmp.d==x) {
+			  x=x-3;
 			  return tmp.d;
+		  }
 	  }
 	  return -1;
   }
@@ -76,7 +82,9 @@ class SLL{
 int d=0;
 SLL l=null;
 SLL r=null;
-
+SLL(int x){
+	d = x;
+}
 }
 /*
 class TestInvoke {
