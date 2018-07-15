@@ -48,6 +48,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
       print_obj_value = counterClass.getMethod("void printObjValue(int)");
       toggle = counterClass.getMethod("void toggleDelta()");
       addObjectToMap = counterClass.getMethod("void addVar(java.lang.Object,java.lang.Object)");
+//      endPrinting = counterClass.getMethod("void endPrinting()");
       
       //fields
       name = counterClass.getFieldByName("name");
@@ -149,6 +150,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -197,8 +199,13 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			}
 			locnum++;
 		}
-		return incStmt;
 		
+//		InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(endPrinting.makeRef());
+//		Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+//		units.insertAfter(printStmt, incStmt);
+//		incStmt = printStmt;
+		
+		return incStmt;		
 
 	}
 	private void PrintLocalValue(Chain units, Body body, Stmt incStmt)
@@ -244,6 +251,10 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			}
 			locnum++;
 		}
+//		InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(endPrinting.makeRef());
+//		Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
+//		units.insertAfter(printStmt, incStmt);
+//		incStmt = printStmt;
 		
 
 	}

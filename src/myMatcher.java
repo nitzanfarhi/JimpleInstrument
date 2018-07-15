@@ -37,14 +37,22 @@ public class myMatcher {
 //			String left = m.lhs.toString().replace("$", "");
 			return right+" = "+right;
 		}
-		
-
-		if(matchedCase instanceof CaseAssignLocal) {
-			//WHY?
-			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
+		if(matchedCase instanceof CaseAssignLocal_NewExpr) {//new ..
+			CaseAssignLocal_NewExpr m = (CaseAssignLocal_NewExpr) matchedCase;
 			String right = m.rhs.toString().replace("$", "");
 			if(m.rhs instanceof JInstanceFieldRef)
 				right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue()+
+						((JInstanceFieldRef)m.rhs).getFieldRef().name();
+			String left = m.lhs.toString().replace("$", "");
+			return left+" = "+right;
+		}
+		
+
+		if(matchedCase instanceof CaseAssignLocal) {
+			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
+			String right = m.rhs.toString().replace("$", "");
+			if(m.rhs instanceof JInstanceFieldRef)
+				right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue()+"."+
 						((JInstanceFieldRef)m.rhs).getFieldRef().name();
 			String left = m.lhs.toString().replace("$", "");
 			return left+" = "+right;

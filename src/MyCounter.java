@@ -29,6 +29,8 @@ public class MyCounter {
   public static void init(String out)
   {
 	  try {
+//		  toggleDelta();
+
 		  if(writer==null)
 		  {
 			  curr=new ArrayList();
@@ -100,7 +102,7 @@ public class MyCounter {
   public static void printValue(int end)
   {
 	  String s;
-	  SHOW_DELTA=0;
+//	  SHOW_DELTA=0;
 	  if(end==0) {
 	      s = String.format("%s==%s && ",name,value);
 	  }
@@ -124,6 +126,9 @@ public class MyCounter {
 		  
 	  }
   }
+//  public static void endPrinting() {
+//	  curr = new ArrayList<>();
+//  }
   public static void finish()
   {
 	  if(writer!=null)
