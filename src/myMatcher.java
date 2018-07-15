@@ -1,5 +1,6 @@
 import bgu.cs.util.Matcher.Case;
 import bgu.cs.util.soot.*;
+import soot.AbstractSootFieldRef;
 import soot.Unit;
 import soot.Value;
 import soot.jimple.internal.JInstanceFieldRef;
@@ -33,9 +34,9 @@ public class myMatcher {
 		}
 		if(matchedCase instanceof CaseAssignInstanceFieldRef) {
 			CaseAssignInstanceFieldRef m = (CaseAssignInstanceFieldRef) (matchedCase);
-			String right = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getField().getName();
-//			String left = m.lhs.toString().replace("$", "");
-			return right+" = "+right;
+			String left = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getField().getName();
+			String right = m.rhs.toString().replace("$", "");
+			return left+" = "+right;
 		}
 		if(matchedCase instanceof CaseAssignLocal_NewExpr) {//new ..
 			CaseAssignLocal_NewExpr m = (CaseAssignLocal_NewExpr) matchedCase;
@@ -46,7 +47,15 @@ public class myMatcher {
 			String left = m.lhs.toString().replace("$", "");
 			return left+" = "+right;
 		}
-		
+		if(matchedCase instanceof CaseAssignStaticFieldRef) {
+			CaseAssignStaticFieldRef m = (CaseAssignStaticFieldRef) (matchedCase);
+			String right = m.assign.getRightOpBox().getValue().toString();
+			String left = m.assign.getFieldRef().toString();
+//			String right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue()+"."+
+//						((JInstanceFieldRef)m.rhs).getFieldRef().name();
+//			String left = m.lhs.toString().replace("$", "");
+			return left+" = "+right;
+		}
 
 		if(matchedCase instanceof CaseAssignLocal) {
 			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
@@ -57,6 +66,7 @@ public class myMatcher {
 			String left = m.lhs.toString().replace("$", "");
 			return left+" = "+right;
 		}
+		
 		
 //		else if(matchedCase instanceof CaseAssignLocal)
 //		{

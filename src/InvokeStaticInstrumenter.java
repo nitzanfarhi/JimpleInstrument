@@ -32,7 +32,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 
     /* some internal fields */
     static SootClass counterClass;
-    static SootMethod init,finish,printer,method_finish,print_value,print_obj_value,toggle,addObjectToMap;
+    static SootMethod init,finish,printer,method_finish,print_value,print_obj_value,print_param_value,print_param_obj_value,toggle,addObjectToMap;
     static SootField name,value,objvalue;
 	static Matcher<Unit> jimpleMatcher = new Matcher<>();
 
@@ -46,6 +46,8 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
       method_finish = counterClass.getMethod("void method_finish()");
       print_value = counterClass.getMethod("void printValue(int)");
       print_obj_value = counterClass.getMethod("void printObjValue(int)");
+      print_param_value = counterClass.getMethod("void printParamValue(int)");
+      print_param_obj_value = counterClass.getMethod("void printParamObjValue(int)");
       toggle = counterClass.getMethod("void toggleDelta()");
       addObjectToMap = counterClass.getMethod("void addVar(java.lang.Object,java.lang.Object)");
 //      endPrinting = counterClass.getMethod("void endPrinting()");
@@ -176,7 +178,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 				                jimple_name,
 				                StringConstant.v(loc.getName()));
 				        units.insertAfter(secondAssign, AssignStmt);
-						InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_value.makeRef(),IntConstant.v(islast));
+						InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_param_value.makeRef(),IntConstant.v(islast));
 						Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
 						units.insertAfter(printStmt, secondAssign);
 						incStmt = printStmt;
@@ -192,7 +194,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		                StringConstant.v(loc.getName()));
 		        units.insertAfter(secondAssign, AssignStmt);
 		        
-				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_obj_value.makeRef(),IntConstant.v(islast));
+				InvokeExpr printExpr= Jimple.v().newStaticInvokeExpr(print_param_obj_value.makeRef(),IntConstant.v(islast));
 				Stmt printStmt = Jimple.v().newInvokeStmt(printExpr);
 				units.insertAfter(printStmt, secondAssign);
 				incStmt = printStmt;

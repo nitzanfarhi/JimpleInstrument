@@ -27,7 +27,6 @@ class TestInvoke {
 		  }
 	  return c;
   }
-  volatile static int a;
   @checker
   private static int goo(SLL sll,SLL n1, SLL n2, SLL n3, SLL n4, int x){
 	  int c =33;
@@ -45,14 +44,11 @@ class TestInvoke {
 //	  SLL n1 = new SLL();
 //	  SLL n2 = new SLL();
 //	  SLL n3 = new SLL();
-	  a = 13;
-	  n1.d=a;
-	  a=12;
-	  n2.d=a;
-	  a=11;
-	  n3.d=a;
-	  a=10;
-	  n4.d=a;
+	  
+	  n1.d=13;
+	  n2.d=12;
+	  n3.d=11;
+	  n4.d=10;
 
 	  n1.l=n2;
 	  n2.l=n3;

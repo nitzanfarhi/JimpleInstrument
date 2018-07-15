@@ -99,6 +99,38 @@ public class MyCounter {
 		  }
 	  }
   }
+  public static void printParamObjValue(int end)
+  {
+	  String s="";
+	  if(objvalue==null){
+		  s = String.format("%s==%s", name, "null");
+		  if(end==0)
+			  s += " && ";
+		  else
+			  s += "]";
+	  }
+	  else {
+		  Field[] fields = objvalue.getClass().getDeclaredFields();
+//		  s+=map;
+		  for(Field f:fields) {
+			  try {
+				  if(f.get(objvalue) instanceof Integer)
+					  s+=String.format("%s.%s==%s", name,  f.getName(), f.get(objvalue));
+				  else
+					  s+=String.format("%s.%s==%s", name,  f.getName(), map.get(f.get(objvalue)));
+				  
+			  } catch (IllegalArgumentException | IllegalAccessException e) {
+				  s+=String.format("%s.%s==%s", name, f.getName(), "null");
+			  }
+			  if(end==0)
+				  s += " && ";
+			  else
+				  s += "]";			  
+		  }
+	  }	  
+	  curr.add(s);
+	  writer.print(s);	  
+  }
   public static void printValue(int end)
   {
 	  String s;
@@ -125,6 +157,19 @@ public class MyCounter {
 		  }
 		  
 	  }
+  }
+  public static void printParamValue(int end)
+  {
+	  String s;
+	  if(end==0) {
+		  s = String.format("%s==%s && ",name,value);
+	  }
+	  else
+	  {
+		  s = String.format("%s==%s]",name,value);		  
+	  }
+	  curr.add(s);
+	  writer.print(s);
   }
 //  public static void endPrinting() {
 //	  curr = new ArrayList<>();
