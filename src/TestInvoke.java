@@ -44,6 +44,7 @@ class TestInvoke {
 //	  SLL n1 = new SLL();
 //	  SLL n2 = new SLL();
 //	  SLL n3 = new SLL();
+//	  SLL n3 = new SLL();
 	  
 	  n1.d=13;
 	  n2.d=12;

@@ -1,21 +1,25 @@
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import bgu.cs.util.Matcher;
 import bgu.cs.util.Matcher.Case;
-import bgu.cs.util.soot.CaseAssignLocal;
-import polyglot.types.reflect.Constant;
-import soot.*;
+import soot.Body;
+import soot.BodyTransformer;
+import soot.Local;
+import soot.RefType;
+import soot.Scene;
+import soot.SootClass;
+import soot.SootField;
+import soot.SootMethod;
+import soot.Type;
+import soot.Unit;
 import soot.jimple.AssignStmt;
-import soot.jimple.CastExpr;
-import soot.jimple.InstanceFieldRef;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
-import soot.jimple.JimpleBody;
 import soot.jimple.NullConstant;
 import soot.jimple.ReturnStmt;
 import soot.jimple.ReturnVoidStmt;
@@ -23,8 +27,7 @@ import soot.jimple.StaticFieldRef;
 import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
-import soot.tagkit.AnnotationTag;
-import soot.tagkit.Tag;
+import soot.jimple.internal.JIdentityStmt;
 import soot.tagkit.VisibilityAnnotationTag;
 import soot.util.Chain;
 
@@ -167,7 +170,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 		
 		for(Local loc :body.getParameterLocals())
 		{
-
+			int size = body.getParameterLocals().size();
 			int islast = locnum==body.getParameterLocals().size()-1?1:0;
 			if(loc.getType().toString().equals("int"))
 					{	
@@ -264,9 +267,13 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 	private void instrumentBegin(Iterator stmtIt, Chain units, Body body) {
 		// method prefix printing
 		Stmt stmt=(Stmt)stmtIt.next();
-		
-		for(int i=0;i<body.getParameterLocals().size()-1;i++)
+		Type v;
+		Set<String> classesNames = new HashSet<>();
+		String classDecleration = getClassDecleration(stmt, classesNames);
+		for(int i=0;i<body.getParameterLocals().size()-1;i++) {
 			stmt = (Stmt) stmtIt.next();
+			classDecleration += getClassDecleration(stmt, classesNames);
+		}
 
 		
 		String params ="(";
@@ -277,7 +284,10 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			if(param.toString().contains("String"))
 				mut=false;
 			String mutable = mut?"mut":"immut";
-			params+=mutable + " " +("i"+paramIndex++)+":"+param.toString()+",";
+			String name = "i";
+			if(param instanceof RefType)
+				name = "r";
+			params+=mutable + " " +(name+paramIndex++)+":"+param.toString()+",";
 		}
 		params=params.substring(0,params.length()-1);
 		params=body.getMethod().getName()+" "+params+")";
@@ -290,7 +300,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			InvokeExpr incExpr= Jimple.v().newStaticInvokeExpr(toggle.makeRef());
 			InvokeStmt incStmt2 = Jimple.v().newInvokeStmt(incExpr);
 			units.insertAfter(incStmt2, stmt);
-			incExpr = Jimple.v().newStaticInvokeExpr(init.makeRef(),StringConstant.v(params));
+			incExpr = Jimple.v().newStaticInvokeExpr(init.makeRef(),StringConstant.v(classDecleration+params));
 			Stmt incStmt = Jimple.v().newInvokeStmt(incExpr);
 			units.insertAfter(incStmt, incStmt2);	
 			lstStmt = incStmt;
@@ -305,6 +315,29 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 
 		Stmt aftStmt = PrintParamValue(units, body, lstStmt);
 
+	}
+
+	private String getClassDecleration(Stmt stmt, Set<String> classesNames) {
+		Type v;
+		StringBuilder sb = new StringBuilder();
+		if(stmt instanceof JIdentityStmt) {
+			v = ((JIdentityStmt)stmt).rightBox.getValue().getType();
+			if(v instanceof RefType) {
+				String name = ((RefType) v).getClassName();
+				if(!classesNames.contains(name)) {	
+					sb.append("type "+name+" {\n");
+					Chain<SootField> fields = ((RefType)v).getSootClass().getFields();
+//					SootField f = fields.getFirst();
+					for(SootField f : fields) {
+						sb.append("  "+f.getName()+":"+f.getType()+"\n");
+					}
+					classesNames.add(name);
+				}
+			}
+		}
+		if(sb.length()!=0)
+			sb.append("}\n\n");
+		return sb.toString();
 	}
 
 	private Stmt initLocals(Chain units, Body body, Stmt aftStmt) {

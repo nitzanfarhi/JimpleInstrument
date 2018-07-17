@@ -1,4 +1,10 @@
-goo (mut i0:SLL,mut i1:SLL,mut i2:SLL,mut i3:SLL,mut i4:SLL,mut i5:int) -> (res:int){
+type SLL {
+  d:int
+  l:SLL
+  r:SLL
+}
+
+goo (mut r0:SLL,mut r1:SLL,mut r2:SLL,mut r3:SLL,mut r4:SLL,mut i5:int) -> (res:int){
 	example {[r0.d==0 && r0.l==null && r0.r==null && r1.d==2 && r1.l==null && r1.r==null && r2.d==3 && r2.l==null && r2.r==null && r3.d==4 && r3.l==null && r3.r==null && r4.d==5 && r4.l==null && r4.r==null && i4==3]
 	-> i5 = 33;//$i0==0 && $i1==0 && $i2==0 && $i3==0 && i4==3 && i5==33 && r5==null]
 	-> r1.d = 13;//r1.d==13 && r1.l==null && r1.r==null && 
