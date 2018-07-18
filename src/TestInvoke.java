@@ -1,13 +1,14 @@
 class TestInvoke {
   private static int calls=0;
   public static void main(String[] args) {
- 
-    for (int i=1; i<12; i+=1) {
-      System.out.println(goo(new SLL(),new SLL(2),new SLL(3),new SLL(4),new SLL(5),3));
+	  doo(new SLL());
+//    for (int i=1; i<12; i+=1) {
+//      System.out.println(goo(new SLL(),new SLL(2),new SLL(3),new SLL(4),new SLL(5),3));
 //      System.out.println(goo2(i,3));
-    } 
+//    } 
 //    goo(12,3);
   }
+  
 
   private static int foo(int a) {
 	  return a;
@@ -28,6 +29,11 @@ class TestInvoke {
 	  return c;
   }
   @checker
+  private static int doo(SLL sll) {
+	  sll.d=3;
+	  return 6;
+  }
+//  @checker
   private static int goo(SLL sll,SLL n1, SLL n2, SLL n3, SLL n4, int x){
 	  int c =33;
 //	  while (a != b) {

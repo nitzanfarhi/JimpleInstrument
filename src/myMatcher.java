@@ -28,15 +28,19 @@ public class myMatcher {
 		}
 		if(matchedCase instanceof CaseAssignLocal_InstanceFieldRef) {
 			CaseAssignLocal_InstanceFieldRef m = (CaseAssignLocal_InstanceFieldRef) (matchedCase);
-			String right = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getFieldRef().name();
+			String localName = "loc_"+m.base.getType();
+			String before = localName+" = "+m.base.getName()+";";
+			String right = localName.replace("$", "")+"."+m.instanceFieldRef.getFieldRef().name();
 			String left = m.lhs.toString().replace("$", "");
-			return left+" = "+right;
+			return before+"\n	-> "+left+" = "+right;
 		}
 		if(matchedCase instanceof CaseAssignInstanceFieldRef) {
 			CaseAssignInstanceFieldRef m = (CaseAssignInstanceFieldRef) (matchedCase);
-			String left = m.base.getName().replace("$", "")+"."+m.instanceFieldRef.getField().getName();
+			String localName = "loc_"+m.base.getType();
+			String before = localName+" = "+m.base.getName()+";";
+			String left = localName.replace("$", "")+"."+m.instanceFieldRef.getField().getName();
 			String right = m.rhs.toString().replace("$", "");
-			return left+" = "+right;
+			return before+"\n	-> "+left+" = "+right;
 		}
 		if(matchedCase instanceof CaseAssignLocal_NewExpr) {//new ..
 			CaseAssignLocal_NewExpr m = (CaseAssignLocal_NewExpr) matchedCase;
@@ -61,7 +65,7 @@ public class myMatcher {
 			CaseAssignLocal m = (CaseAssignLocal) (matchedCase);
 			String right = m.rhs.toString().replace("$", "");
 			if(m.rhs instanceof JInstanceFieldRef)
-				right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue()+"."+
+				right = ((JInstanceFieldRef)m.rhs).getBaseBox().getValue().toString().replace('r', 'o')+"."+
 						((JInstanceFieldRef)m.rhs).getFieldRef().name();
 			String left = m.lhs.toString().replace("$", "");
 			return left+" = "+right;

@@ -274,7 +274,10 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			stmt = (Stmt) stmtIt.next();
 			classDecleration += getClassDecleration(stmt, classesNames);
 		}
-
+		StringBuilder localVarDeclerations = new StringBuilder();
+		for(String className: classesNames)
+			localVarDeclerations.append("	var loc_"+className+":"+className+"\n");
+		
 		
 		String params ="(";
 		int paramIndex=0;
@@ -300,7 +303,7 @@ public class InvokeStaticInstrumenter extends BodyTransformer{
 			InvokeExpr incExpr= Jimple.v().newStaticInvokeExpr(toggle.makeRef());
 			InvokeStmt incStmt2 = Jimple.v().newInvokeStmt(incExpr);
 			units.insertAfter(incStmt2, stmt);
-			incExpr = Jimple.v().newStaticInvokeExpr(init.makeRef(),StringConstant.v(classDecleration+params));
+			incExpr = Jimple.v().newStaticInvokeExpr(init.makeRef(),StringConstant.v(classDecleration+params+"\n"+localVarDeclerations.toString()));
 			Stmt incStmt = Jimple.v().newInvokeStmt(incExpr);
 			units.insertAfter(incStmt, incStmt2);	
 			lstStmt = incStmt;

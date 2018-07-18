@@ -71,6 +71,7 @@ public class MyCounter {
 	  else {
 		  Field[] fields = objvalue.getClass().getDeclaredFields();
 //		  s+=map;
+		  int ind = 0;
 		  for(Field f:fields) {
 			  try {
 				  if(f.get(objvalue) instanceof Integer)
@@ -81,11 +82,12 @@ public class MyCounter {
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				s+=String.format("%s.%s==%s", name, f.getName(), "null");
 			}
-			  if(end==0)
-				  s += " && ";
-			  else
-				  s += "]";			  
+			  ind++;
+			  if(ind<fields.length)
+				  s += " && ";	  
 		  }
+		  if(end==0)
+			  s += " && ";	
 	  }
 	  		  
 	  if(last==null){
@@ -101,9 +103,12 @@ public class MyCounter {
   }
   public static void printParamObjValue(int end)
   {
-	  String s="";
+	 
+	  String index = name.substring(1);
+	  String s=name+"==o"+index+" && ";
+	  name = "o"+index;
 	  if(objvalue==null){
-		  s = String.format("%s==%s", name, "null");
+		  s += String.format("%s==%s", name, "null");
 		  if(end==0)
 			  s += " && ";
 		  else
@@ -112,6 +117,7 @@ public class MyCounter {
 	  else {
 		  Field[] fields = objvalue.getClass().getDeclaredFields();
 //		  s+=map;
+		  int ind = 0;
 		  for(Field f:fields) {
 			  try {
 				  if(f.get(objvalue) instanceof Integer)
@@ -122,11 +128,14 @@ public class MyCounter {
 			  } catch (IllegalArgumentException | IllegalAccessException e) {
 				  s+=String.format("%s.%s==%s", name, f.getName(), "null");
 			  }
-			  if(end==0)
-				  s += " && ";
-			  else
-				  s += "]";			  
+			  ind++;
+			  if(ind<fields.length)
+				  s += " && ";	  
 		  }
+		  if(end==0)
+			  s += " && ";	
+		  else
+			  s += "]";	
 	  }	  
 	  curr.add(s);
 	  writer.print(s);	  
