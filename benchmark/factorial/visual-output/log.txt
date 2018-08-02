@@ -1,0 +1,38 @@
+יולי 25, 2018 2:39:28 אחה״צ jminor.Main run
+INFO: Synthesizer: started
+יולי 25, 2018 2:39:28 אחה״צ jminor.JminorDebugger printExamples
+INFO: Visualizing examples...
+יולי 25, 2018 2:39:28 אחה״צ jminor.JminorDebugger printExamples
+INFO: Done visualizing examples.
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Planning for example example_0...
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Found a plan for example example_0
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Planning for example example_1...
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Found a plan for example example_1
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Planning for example example_2...
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Found a plan for example example_2
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Planning for example example_3...
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Found a plan for example example_3
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Planning for example example_4...
+יולי 25, 2018 2:39:28 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Found a plan for example example_4
+יולי 25, 2018 2:39:29 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Generalizing 5 plans...
+יולי 25, 2018 2:39:30 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Automaton learning time: 0 sec.
+יולי 25, 2018 2:39:30 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Automaton learning result = OK
+יולי 25, 2018 2:39:30 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Succeeded on 0 out of 0 test examples.
+יולי 25, 2018 2:39:30 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: Validation tests: okay
+יולי 25, 2018 2:39:30 אחה״צ bgu.cs.util.HTMLPrinter info
+INFO: PETI: found program automaton!

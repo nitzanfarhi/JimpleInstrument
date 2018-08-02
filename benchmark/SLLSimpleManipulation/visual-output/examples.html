@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+<HTML>
+<HEAD>
+<TITLE>Examples</TITLE>
+
+<script type="text/javascript">
+var currOption = 0;
+var lastChosenId = null;
+var lastChosenStyle = null;
+
+function choose(id) {
+  var menu = ["example0"];
+  lastChosenId = document.getElementById(id);
+
+  for (i = 0; i < menu.length; i++) {
+    currOption = menu[i];
+    var elt = document.getElementById(currOption);
+    var opElt = document.getElementById(currOption);
+    if (currOption == id && elt.style.display == "none") {
+      elt.style.display = "block";
+    }
+    else {
+      elt.style.display = "none";
+    }
+  }
+}
+</script>
+
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+</HEAD>
+<BODY>
+
+<div id="menu" style="width:100%;">
+Examples: <a id="0" href="#" onclick="choose('example0')">0</a>
+</div>
+
+<hr>
+
+<div id="example0" style="display:none;">
+<table>
+  <caption>Example 0 (training)</caption>
+  <tr><td><img src="example_0_0.svg"></td></tr>
+  <tr><td><code>loc_SLL = r0;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 3;</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<script type="text/javascript">
+choose('example0');
+</script>
+</BODY>
+</HTML>

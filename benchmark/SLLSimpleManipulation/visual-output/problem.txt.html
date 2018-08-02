@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+<HTML>
+<HEAD>
+<TITLE>Specification</TITLE>
+</HEAD>
+<BODY><PRE><CODE>Types = {
+  int
+}
+
+Variables = {
+  mut r0
+  res:int
+  mut loc_SLL
+}
+
+Commands = {
+  r0 = loc_SLL;
+  loc_SLL = r0;
+  r0 = new SLL();
+  r0 = null;
+  r0.r = null;
+  r0.r = r0;
+  r0.r = loc_SLL;
+  r0.l = null;
+  r0.l = r0;
+  r0.l = loc_SLL;
+  r0.d = res;
+  r0 = r0.r;
+  r0 = loc_SLL.r;
+  r0 = r0.l;
+  r0 = loc_SLL.l;
+  loc_SLL = new SLL();
+  loc_SLL = null;
+  loc_SLL.r = null;
+  loc_SLL.r = r0;
+  loc_SLL.r = loc_SLL;
+  loc_SLL.l = null;
+  loc_SLL.l = r0;
+  loc_SLL.l = loc_SLL;
+  loc_SLL.d = res;
+  loc_SLL = r0.r;
+  loc_SLL = loc_SLL.r;
+  loc_SLL = r0.l;
+  loc_SLL = loc_SLL.l;
+  res = (res + res);
+  res = (res * res);
+  res = (res + 1);
+  res = (res - 1);
+  res = (res / 1);
+  res = 0;
+  res = (0 + res);
+  res = (0 * res);
+  res = (0 - res);
+  res = (0 / res);
+  res = 1;
+  res = (1 + res);
+  res = (1 * res);
+  res = (1 - res);
+  res = (1 / res);
+}</CODE></PRE></BODY>
+</HTML>

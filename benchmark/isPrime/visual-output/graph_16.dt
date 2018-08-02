@@ -1,0 +1,16 @@
+digraph anonymous_graph {
+ node [shape=ellipse];
+N0 [label="initial", ];
+N1 [label="final", peripheries=2];
+N2 [label="N2519", ];
+N3 [label="N3240", ];
+N4 [label="N4358", ];
+N0->N4[label="i2 = 2;"];
+N2->N3[label="i1 = (i2 * i3);"];
+N2->N4[label="i2 = (i2 + 1);"];
+N3->N2[label="i3 = (i3 + 1);"];
+N3->N1[label="!(i1 < i0)/
+return;"];
+N4->N2[label="i3 = 1;"];
+N4->N1[label="return;"];
+}

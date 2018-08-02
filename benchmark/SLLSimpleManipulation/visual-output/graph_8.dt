@@ -1,0 +1,8 @@
+digraph anonymous_graph {
+ node [shape=ellipse];
+N0 [label="initial", ];
+N1 [label="final", peripheries=2];
+N0->N1[label="loc_SLL = r0;
+loc_SLL.d = 3;
+return;"];
+}

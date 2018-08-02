@@ -1,0 +1,34 @@
+digraph store {
+  null [shape=plaintext];
+  N0 [label="SLL#10
+  d=0", shape=box];
+  N1 [label="SLL#11
+  d=2", shape=box];
+  N2 [label="SLL#12
+  d=3", shape=box];
+  N3 [label="SLL#13
+  d=4", shape=box];
+  N4 [label="SLL#14
+  d=5", shape=box];
+  r1 [label="r1", shape=plaintext];
+  r2 [label="r2", shape=plaintext];
+  r3 [label="r3", shape=plaintext];
+  r4 [label="r4", shape=plaintext];
+  r0 [label="r0", shape=plaintext];
+  r1 -> N1;
+  r2 -> N2;
+  r3 -> N3;
+  r4 -> N4;
+  r0 -> N0;
+  i4 [label="i4==3", shape=plaintext];
+  N0 -> null [label="r"];
+  N0 -> null [label="l"];
+  N1 -> null [label="r"];
+  N1 -> null [label="l"];
+  N2 -> null [label="r"];
+  N2 -> null [label="l"];
+  N3 -> null [label="r"];
+  N3 -> null [label="l"];
+  N4 -> null [label="r"];
+  N4 -> null [label="l"];
+}

@@ -1,0 +1,11 @@
+digraph anonymous_graph {
+ node [shape=ellipse];
+N0 [label="initial", ];
+N1 [label="final", peripheries=2];
+N0->N1[label="!(i1 < i0) && !(i0 < i1)/
+return;"];
+N0->N0[label="!(i1 < i0) && i0 < i1/
+i1 = (i1 - i0);"];
+N0->N0[label="i1 < i0/
+i0 = (i0 - i1);"];
+}

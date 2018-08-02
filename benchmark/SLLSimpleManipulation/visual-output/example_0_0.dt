@@ -1,0 +1,9 @@
+digraph store {
+  null [shape=plaintext];
+  N0 [label="SLL#0
+  d=0", shape=box];
+  r0 [label="r0", shape=plaintext];
+  r0 -> N0;
+  N0 -> null [label="r"];
+  N0 -> null [label="l"];
+}

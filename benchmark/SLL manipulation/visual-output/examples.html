@@ -1,0 +1,544 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+<HTML>
+<HEAD>
+<TITLE>Examples</TITLE>
+
+<script type="text/javascript">
+var currOption = 0;
+var lastChosenId = null;
+var lastChosenStyle = null;
+
+function choose(id) {
+  var menu = ["example0", "example1", "example2", "example3", "example4", "example5", "example6", "example7", "example8", "example9", "example10"];
+  lastChosenId = document.getElementById(id);
+
+  for (i = 0; i < menu.length; i++) {
+    currOption = menu[i];
+    var elt = document.getElementById(currOption);
+    var opElt = document.getElementById(currOption);
+    if (currOption == id && elt.style.display == "none") {
+      elt.style.display = "block";
+    }
+    else {
+      elt.style.display = "none";
+    }
+  }
+}
+</script>
+
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+</HEAD>
+<BODY>
+
+<div id="menu" style="width:100%;">
+Examples: <a id="0" href="#" onclick="choose('example0')">0</a>
+<a id="1" href="#" onclick="choose('example1')">1</a>
+<a id="2" href="#" onclick="choose('example2')">2</a>
+<a id="3" href="#" onclick="choose('example3')">3</a>
+<a id="4" href="#" onclick="choose('example4')">4</a>
+<a id="5" href="#" onclick="choose('example5')">5</a>
+<a id="6" href="#" onclick="choose('example6')">6</a>
+<a id="7" href="#" onclick="choose('example7')">7</a>
+<a id="8" href="#" onclick="choose('example8')">8</a>
+<a id="9" href="#" onclick="choose('example9')">9</a>
+<a id="10" href="#" onclick="choose('example10')">10</a>
+</div>
+
+<hr>
+
+<div id="example0" style="display:none;">
+<table>
+  <caption>Example 0 (training)</caption>
+  <tr><td><img src="example_0_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example1" style="display:none;">
+<table>
+  <caption>Example 1 (training)</caption>
+  <tr><td><img src="example_1_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example2" style="display:none;">
+<table>
+  <caption>Example 2 (training)</caption>
+  <tr><td><img src="example_2_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example3" style="display:none;">
+<table>
+  <caption>Example 3 (training)</caption>
+  <tr><td><img src="example_3_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example4" style="display:none;">
+<table>
+  <caption>Example 4 (training)</caption>
+  <tr><td><img src="example_4_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example5" style="display:none;">
+<table>
+  <caption>Example 5 (training)</caption>
+  <tr><td><img src="example_5_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example6" style="display:none;">
+<table>
+  <caption>Example 6 (training)</caption>
+  <tr><td><img src="example_6_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example7" style="display:none;">
+<table>
+  <caption>Example 7 (training)</caption>
+  <tr><td><img src="example_7_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example8" style="display:none;">
+<table>
+  <caption>Example 8 (training)</caption>
+  <tr><td><img src="example_8_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example9" style="display:none;">
+<table>
+  <caption>Example 9 (training)</caption>
+  <tr><td><img src="example_9_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<div id="example10" style="display:none;">
+<table>
+  <caption>Example 10 (training)</caption>
+  <tr><td><img src="example_10_0.svg"></td></tr>
+  <tr><td><code>i5 = 33;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 13;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 12;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 11;</code></td></tr>
+  <tr><td><code>loc_SLL = r4;</code></td></tr>
+  <tr><td><code>loc_SLL.d = 10;</code></td></tr>
+  <tr><td><code>loc_SLL = r1;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r2;</code></td></tr>
+  <tr><td><code>loc_SLL = r2;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r3;</code></td></tr>
+  <tr><td><code>loc_SLL = r3;</code></td></tr>
+  <tr><td><code>loc_SLL.l = r4;</code></td></tr>
+  <tr><td><code>r5 = r1;</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>i5 = (i5 + 1);</code></td></tr>
+  <tr><td><code>i0 = r5.d;</code></td></tr>
+  <tr><td><code>loc_SLL = r5;</code></td></tr>
+  <tr><td><code>r5 = loc_SLL.l;</code></td></tr>
+  <tr><td><code>i4 = (i4 + -1);</code></td></tr>
+  <tr><td><code>return;</code></td></tr>
+</table>
+</div>
+
+<script type="text/javascript">
+choose('example0');
+</script>
+</BODY>
+</HTML>

@@ -1,0 +1,4 @@
+digraph store {
+  i0 [label="i0==137", shape=plaintext];
+  i1 [label="i1==46", shape=plaintext];
+}

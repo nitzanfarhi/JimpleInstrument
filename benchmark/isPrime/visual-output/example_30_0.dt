@@ -1,0 +1,3 @@
+digraph store {
+  i0 [label="i0==60", shape=plaintext];
+}
