@@ -9,8 +9,8 @@ abstract: |
     implementation, using Soot library.
 author:
 - |
-    Students: Nitzan Farhi, ID: 208931568, nitzanfa@post.bgu.ac.il\
-    and Matan Kintzlinger, ID: 207904046, matankin@post.bgu.ac.il
+    Students: Nitzan Farhi, nitzanfa@post.bgu.ac.il\
+    and Matan Kintzlinger, matankin@post.bgu.ac.il
 title: |
     Program Analysis and Verification\
     Project
@@ -391,7 +391,6 @@ using soot life was a bit easier but still required many compilation
 error and bugs since the soot library is not perfect, in the end we
 understood the importance of the project and learned a lot about
 instrumentation and it’s significance.\
-\
 \
 
 [^1]: <http://bytebuddy.net/>
